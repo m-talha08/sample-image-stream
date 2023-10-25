@@ -14,29 +14,32 @@ import java.awt.*;
 
 
 public class Client {
-	
+
 	public static void main(String[] args) throws IOException, InterruptedException {
-	
+
 		try {
-            Socket clientSocket = new Socket("localhost", 1234); // Replace with the actual server address
+			Socket clientSocket = new Socket("localhost", 1234); 
 
-            InputStream inputStream = clientSocket.getInputStream();
-            BufferedImage image = ImageIO.read(inputStream);
-            System.out.print(image);
-            JFrame frame = new JFrame("Received Image");
-            frame.setSize(800, 600);
-            JLabel label = new JLabel(new ImageIcon(image));
-            frame.add(label, BorderLayout.CENTER);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setVisible(true);
-            
-            TimeUnit.SECONDS.sleep(5);
+			InputStream inputStream = clientSocket.getInputStream();
+			BufferedImage image = ImageIO.read(inputStream);
+			System.out.print(image);
+			
+			JFrame frame = new JFrame("Received Image");
+			frame.setSize(500, 500);
+			
+			JLabel label = new JLabel(new ImageIcon(image));
+			
+			frame.add(label, BorderLayout.CENTER);
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setVisible(true);
 
-            clientSocket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+			TimeUnit.SECONDS.sleep(5);
+
+			clientSocket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 }
 
